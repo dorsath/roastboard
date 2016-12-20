@@ -1,4 +1,6 @@
 let sounds = require("./src/sounds.js");
+var uuid = require('node-uuid');
+
 let play = function(file){
   let a = new Audio('sounds/' + file);
   a.currentTime = 0;
@@ -25,3 +27,6 @@ let container = document.getElementById("soundbuttons");
 for (var key in sounds){
   container.appendChild(newButton(key, sounds[key]));
 }
+
+console.log(window.location.href);
+console.log(uuid.v4());
