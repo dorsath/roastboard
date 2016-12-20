@@ -1,0 +1,31 @@
+html {
+
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  clear: both;
+}
+
+#soundbuttons {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+#soundbuttons .soundButton {
+  margin: 3px;
+  background-color:white;
+  border: 1px solid black;
+  padding: 2px;
+}
+
+#soundbuttons .soundButton:hover {
+    color: red;
+    cursor: pointer;
+}

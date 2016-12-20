@@ -1,0 +1,24 @@
+{
+  "name": "roastboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "budo index.js:public/js/bundle.js --serve js/bundle.js --live --open --dir ./public -v",
+    "build": "browserify index.js -o public/js/bundle.js"
+  },
+  "dependencies": {
+    "browserify": "^13.1.1",
+    "budo": "^9.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorsath/roastboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dorsath/roastboard/issues"
+  },
+  "homepage": "https://github.com/dorsath/roastboard#readme"
+}
