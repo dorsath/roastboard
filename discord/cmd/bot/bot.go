@@ -130,6 +130,41 @@ var CENA *SoundCollection = &SoundCollection{
 	},
 }
 
+var PURGE *SoundCollection = &SoundCollection{
+	Prefix: "purge",
+	Commands: []string{
+		"!purge",
+	},
+	Sounds: []*Sound{
+		createSound("you_dont_understand", 1, 250),
+		createSound("weak_players", 1, 250),
+		createSound("time_spent_worthless", 1, 250),
+		createSound("teammates_at_1kmmr", 1, 250),
+		createSound("sunder_killed_yourself", 1, 250),
+		createSound("shit_playstyle", 1, 250),
+		createSound("right_click", 1, 250),
+		createSound("problem_with_1kmmr_players", 1, 250),
+		createSound("pretty_big_mistake", 1, 250),
+		createSound("oh_no_mistake", 1, 250),
+		createSound("officially_huge_mistake", 1, 250),
+		createSound("not_playing_dota_long", 1, 250),
+		createSound("not_playing_dota", 1, 250),
+		createSound("not_about_you", 1, 250),
+		createSound("its_not_worth_watching", 1, 250),
+		createSound("its_like_league_of_legends", 1, 250),
+		createSound("infinitely_better", 1, 250),
+		createSound("im_gonna_screw_you", 1, 250),
+		createSound("i_have_no_idea", 1, 250),
+		createSound("huge_mistake", 1, 250),
+		createSound("he_hasnt_done_shit", 1, 250),
+		createSound("fuck_slacks", 1, 250),
+		createSound("coffin_tirade", 1, 250),
+		createSound("choosing_not_to_farm", 1, 250),
+		createSound("attacking_the_wrong_guy", 1, 250),
+		createSound("alright_you_messed_up", 1, 250),
+	},
+}
+
 var ETHAN *SoundCollection = &SoundCollection{
 	Prefix: "ethan",
 	Commands: []string{
@@ -199,6 +234,7 @@ var COLLECTIONS []*SoundCollection = []*SoundCollection{
 	COW,
 	BIRTHDAY,
 	WOW,
+	PURGE,
 }
 
 // Create a Sound struct
