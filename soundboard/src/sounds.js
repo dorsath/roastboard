@@ -20,7 +20,7 @@ module.exports = {
   "teammates_at_1kmmr.mp3": "Its not your teammates keeping you at 1K MMR. It's your shit farming patterns. Its your inefficient movement. Its your bad stacking. Its all of these things. You're not using your mana correctly. Your skillbuilds are aweful.",
   "problem_with_1kmmr_players.mp3": "This is the problem with 1K MMR Players. They basically just show up and they stand around and eventually somebody dies.",
   "oh_no_mistake.mp3": "OOOH NOOOOO OHHHH NOOOOO MISTAAAKKEEEE",
-  "im_gonna_screw_you.mp3": "I'm gonna screw you: you had a really shit early game!",
+  "im_gonna_screw_you.mp3": "I'm gonna skewer you: you had a really shit early game!",
   "coffin_tirade.mp3": "Tirade over Coffin",
   "fuck_slacks.mp3": "Fuck slacks",
   "not_playing_dota.mp3": "You're basically not even playing Dota.",

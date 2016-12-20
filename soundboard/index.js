@@ -24,5 +24,4 @@ let container = document.getElementById("soundbuttons");
 
 for (var key in sounds){
   container.appendChild(newButton(key, sounds[key]));
-  //console.log(key);
 }
