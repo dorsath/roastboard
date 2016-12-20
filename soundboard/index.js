@@ -11,6 +11,7 @@ let play = function(file){
 let newButton = function(file, text){
   let btn = document.createElement("div");
   btn.appendChild(document.createTextNode(text));
+  btn.className = "soundButton";
   btn.addEventListener("click", function(){
     play(file);
   });
