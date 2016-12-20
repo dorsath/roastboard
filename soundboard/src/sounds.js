@@ -14,7 +14,7 @@ module.exports = {
   "its_like_league_of_legends.mp3": "It's like you're playing League of Legends now honestly..",
   "infinitely_better.mp3": "That would've been infinitely better than how you have played this game.",
   "you_sunder_killed_yourself.mp3": "You actually just sunder killed yourself. I am actually really impressed. I am pretty blown away actually.",
-  "attacking_the_wrong_guy.mp3": "And then you start attacking the wrong guy as well. You super messed up. (gniffelend in minachting)",
+  "attacking_the_wrong_guy.mp3": "And then you start attacking the wrong guy as well. You super messed up. ",
   "right_click.mp3": "You can just right click, right click, right click... 6 last hits that you could've gotten right there. You can't do that shit man CMON",
   "not_playing_dota_long.mp3": "You're basically just going to your lane slowly collecting farm and hoping that your opponents do it slower than you. You're not exerting lane pressure. You're basically not even playing Dota.",
   "teammates_at_1kmmr.mp3": "Its not your teammates keeping you at 1K MMR. It's your shit farming patterns. Its your inefficient movement. Its your bad stacking. Its all of these things. You're not using your mana correctly. Your skillbuilds are aweful.",
