@@ -17,9 +17,11 @@ let Server = {
     switch(request){
       case "clientId":
         this.clientId = data.clientId;
+        this.clientReady();
         break;
       case "roomId":
         this.roomId = data.roomId;
+        window.history.pushState('room', 'Join room', '/#' + this.roomId);
         this.roomIdField.value = this.roomId;
         break;
       case "play":
@@ -32,8 +34,19 @@ let Server = {
     setTimeout(this.setup.bind(this), 3000);
   },
   onopen: function(event){
-    console.log("connected", event);
     this.connected = true;
+    //http://192.168.2.5:9966/be40cc0f-b7a8-4895-8924-618bc466af39
+
+  },
+  clientReady: function(event){
+    var uuidFromUrl = window.location.href.split("#")[1];
+    if (uuidFromUrl){
+      console.log("joining room");
+      this.roomId = uuidFromUrl;
+      this.roomIdField.value = uuidFromUrl;
+      this.joinRoom();
+      //this.roomId = uuidFromUrl;
+    }
   },
   onmessage: function(event){
     let data = JSON.parse(event.data);

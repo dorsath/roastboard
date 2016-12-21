@@ -37,6 +37,8 @@ var Server = {
 
     if (room)
       room.addClient(client);
+    else
+      this.newRoom(client, roomId);
   },
   leaveRoom: function(client, room){
     room.removeClient(client);

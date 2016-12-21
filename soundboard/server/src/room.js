@@ -1,8 +1,8 @@
 var uuid = require('node-uuid');
 
-function Room(client){
+function Room(client, roomId){
   this.clients = [];
-  this.uuid = String(uuid.v4());
+  this.uuid = roomId ? roomId : String(uuid.v4());
   this.addClient(client);
 }
 

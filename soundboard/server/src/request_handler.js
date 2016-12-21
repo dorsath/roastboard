@@ -28,7 +28,6 @@ var RequestHandler = {
         }
         break;
       case "play":
-        console.log("handling play", client, message);
         if (client && client.currentRoom && message.sound)
           client.currentRoom.play(message.sound, connection);
         break;
