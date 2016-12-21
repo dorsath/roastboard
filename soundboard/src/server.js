@@ -3,7 +3,6 @@ let uuid = require('node-uuid');
 let Server = {
   socket: undefined,
   connected: false,
-  clientId: undefined,
   roomId: undefined,
   setup: function(){
     this.socket = new WebSocket("ws://localhost:5000");
@@ -15,10 +14,6 @@ let Server = {
   handleCommand: function(request, data){
     console.log(request,data);
     switch(request){
-      case "clientId":
-        this.clientId = data.clientId;
-        this.updateFromHash();
-        break;
       case "roomId":
         this.roomId = data.roomId;
         window.history.pushState('room', 'Join room', '/#' + this.roomId);
@@ -35,6 +30,7 @@ let Server = {
   },
   onopen: function(event){
     this.connected = true;
+    this.updateFromHash();
   },
   updateFromHash: function(event){
     var uuidFromUrl = window.location.href.split("#")[1];
@@ -61,24 +57,23 @@ let Server = {
     this.connected = false;
     this.socket = undefined;
     this.roomId = undefined;
-    this.clientId = undefined;
     this.tryToReconnect();
   },
   newRoom: function(){
     if (this.connected){
-      let message = {"request": "newRoom", "clientId": this.clientId};
+      let message = {"request": "newRoom"};
       this.socket.send(JSON.stringify(message));
     }
   },
   joinRoom: function(){
     if (this.connected){
-      let message = {"request": "joinRoom", "roomId": this.roomIdField.value, "clientId": this.clientId};
+      let message = {"request": "joinRoom", "roomId": this.roomIdField.value};
       this.socket.send(JSON.stringify(message));
     }
   },
   play: function(file){
     if (this.connected){
-      let message = {"request": "play", "sound": file, "clientId": this.clientId};
+      let message = {"request": "play", "sound": file};
       this.socket.send(JSON.stringify(message));
     }
   }

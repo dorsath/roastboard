@@ -20,7 +20,6 @@ var RequestHandler = {
     switch(message.request){
       case "newClient":
         var client = Server.newClient(connection);
-        connection.send(JSON.stringify({"command": "clientId", "clientId": client.uuid}));
         break;
       case "newRoom":
         if (client){
