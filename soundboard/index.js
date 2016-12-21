@@ -20,12 +20,13 @@ document.getElementById("newRoomButton").addEventListener("click", Server.newRoo
 document.getElementById("joinRoomButton").addEventListener("click", Server.joinRoom.bind(Server));
 Server.roomIdField = document.getElementById("roomIdField");
 
+window.addEventListener("hashchange", Server.updateFromHash.bind(Server));
+
 
 let play = function(file){
   if (Server.connected && Server.roomId)
     Server.play(file);
-  else
-    Server.playSound(file);
+  Server.playSound(file);
 }
 
 Server.playSound = function(file){

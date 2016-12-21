@@ -8,9 +8,10 @@ function Room(client, roomId){
 
 Room.prototype = {
   play: function(sound, sourceClient){
-    console.log("playing ", sound);
+    console.log("playing ", sound, "in room", this.uuid);
     this.clients.forEach(function(client){
-      client.send(this.playSoundCommand(sound));
+      if (client.uuid != sourceClient.uuid)
+        client.send(this.playSoundCommand(sound));
     }.bind(this));
   },
   playSoundCommand: function(sound){

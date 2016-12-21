@@ -19,6 +19,5 @@ wss.on('connection', function connection(ws) {
   });
   ws.on('close', function(){
     RequestHandler.handle(Server, ws, {"request": "disconnect"});
-    console.log('lost connection');
   });
 });

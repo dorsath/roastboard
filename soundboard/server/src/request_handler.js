@@ -7,7 +7,13 @@ var RequestHandler = {
     if (!message.request)
       return;
 
-    var client = Server.findClient(message.clientId);
+    var client;
+    for (var clientId in Server.clients){
+      if (Server.clients[clientId].connection === connection){
+        client = Server.clients[clientId];
+        break;
+      }
+    };
     if (client)
       console.log("client", client.uuid);
 
@@ -29,11 +35,13 @@ var RequestHandler = {
         break;
       case "play":
         if (client && client.currentRoom && message.sound)
-          client.currentRoom.play(message.sound, connection);
+          client.currentRoom.play(message.sound, client);
         break;
       case "disconnect":
-        if (client && client.currentRoom)
-          client.currentRoom.removeClient(client);
+        if (client){
+          console.log("disconnected");
+          Server.removeClient(client);
+        }
         break;
     }
   }

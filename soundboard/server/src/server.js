@@ -14,31 +14,26 @@ Client.prototype = {
 
 
 var Server = {
-  rooms: [],
-  clients: [],
-  newRoom: function(client){
+  rooms: {},
+  clients: {},
+  newRoom: function(client, roomId){
     if (client.currentRoom)
       this.leaveRoom(client, client.currentRoom);
 
-    var room = new Room(client);
-    this.rooms.push(room);
+    var room = new Room(client, roomId);
+    this.rooms[room.uuid] = room;
     return room;
   },
-  findRoom: function(roomId){
-    for(var i in this.rooms){
-      if (this.rooms[i].uuid == roomId)
-        return this.rooms[i];
-    }
-  },
   joinRoom: function(client, roomId){
-    var room = this.findRoom(roomId);
+    var room = this.rooms[roomId];
     if (client.currentRoom)
       this.leaveRoom(client, client.currentRoom);
 
     if (room)
       room.addClient(client);
-    else
+    else {
       this.newRoom(client, roomId);
+    }
   },
   leaveRoom: function(client, room){
     room.removeClient(client);
@@ -48,27 +43,23 @@ var Server = {
     }
   },
   removeRoom: function(room){
-    var index = this.rooms.indexOf(room);
-    if (index > -1) {
-        this.rooms.splice(index, 1);
-    }
+    console.log("removing room: ", room.uuid);
+    delete this.rooms[room.uuid];
   },
   newClient: function(connection){
     var newClient = new Client(connection);
-    this.clients.push(newClient);
+    this.clients[newClient.uuid] = newClient;
     return newClient;
   },
   removeClient: function(client){
-    var index = this.clients.indexOf(client);
-    if (index > -1) {
-        this.clients.splice(index, 1);
-    }
+  
+    if (client.currentRoom)
+      this.leaveRoom(client, client.currentRoom);
+
+    delete this.clients[client.uuid];
   },
   findClient: function(clientId){
-    for(var i in this.clients){
-      if (this.clients[i].uuid == clientId)
-        return this.clients[i];
-    }
+    return this.clients[clientId];
   }
 };
 
