@@ -1,23 +1,39 @@
+var Server = require('./server.js');
+var uuid = require('node-uuid');
+
 var RequestHandler = {
-  handle: function(server, client, message){
+  handle: function(server, connection, message){
     console.log(message);
     if (!message.request)
       return;
 
+    var client = Server.findClient(message.clientId);
+    if (client)
+      console.log("client", client.uuid);
+
     switch(message.request){
+      case "newClient":
+        var client = Server.newClient(connection);
+        connection.send(JSON.stringify({"command": "clientId", "clientId": client.uuid}));
+        break;
       case "newRoom":
-        server.newRoom(client);
+        if (client){
+          var room = Server.newRoom(client);
+          connection.send(JSON.stringify({"command": "roomId", "roomId": room.uuid}));
+        }
         break;
       case "joinRoom":
-        if (message.roomId != undefined)
-          server.joinRoom(client, message.roomId);
+        if (message.roomId != undefined){
+          Server.joinRoom(client, message.roomId);
+        }
         break;
       case "play":
-        if (message.currentRoom != undefined && message.sound != undefined)
-          client.currentRoom.play(message.sound, client);
+        console.log("handling play", client, message);
+        if (client && client.currentRoom && message.sound)
+          client.currentRoom.play(message.sound, connection);
         break;
       case "disconnect":
-        if (client.currentRoom != undefined)
+        if (client && client.currentRoom)
           client.currentRoom.removeClient(client);
         break;
     }

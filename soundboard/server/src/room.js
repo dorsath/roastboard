@@ -2,12 +2,13 @@ var uuid = require('node-uuid');
 
 function Room(client){
   this.clients = [];
-  this.uuid = uuid.v4();
+  this.uuid = String(uuid.v4());
   this.addClient(client);
 }
 
 Room.prototype = {
   play: function(sound, sourceClient){
+    console.log("playing ", sound);
     this.clients.forEach(function(client){
       client.send(this.playSoundCommand(sound));
     }.bind(this));
@@ -20,7 +21,7 @@ Room.prototype = {
     client.currentRoom = this;
   },
   removeClient: function(client){
-    this.clients = this.clients.filter(function(c) { return c == client });
+    this.clients = this.clients.filter(function(c) { return c != client });
     client.currentRoom = undefined;
   }
 
