@@ -1,12 +1,13 @@
 let uuid = require('node-uuid');
 let Config = require('../config.js');
+var host = location.origin.replace(/^http/, 'ws')
 
 let Server = {
   socket: undefined,
   connected: false,
   roomId: undefined,
   setup: function(){
-    this.socket = new WebSocket(Config.serverURL);
+    this.socket = new WebSocket(host);
     this.socket.onopen = this.onopen.bind(this);
     this.socket.onmessage = this.onmessage.bind(this);
     this.socket.onclose = this.onclose.bind(this);
