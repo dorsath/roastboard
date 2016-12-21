@@ -1,3 +1,3 @@
 module.exports = {
-  "serverURL": "ws://localhost:5000"
+  "serverURL": "ws://localhost:3000"
 }

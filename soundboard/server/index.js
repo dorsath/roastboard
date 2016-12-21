@@ -1,15 +1,24 @@
+const express = require('express');
+const SocketServer = require('ws').Server;
+const PORT = process.env.PORT || 3000;
+
+const path = require('path');
+const INDEX = path.join(__dirname, '/public/');
+
+
 var WebSocketServer = require('ws').Server;
 var uuid = require('node-uuid');
 var Room = require('./src/room.js');
 var RequestHandler = require('./src/request_handler.js');
 var Server = require('./src/server.js');
 
-console.log("Started websocket server at port 5000");
+const server = express()
+  .use(express.static('public'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
-var wss = new WebSocketServer({ port: 5000 });
-
-wss.on('connection', function connection(ws) {
+const wss = new SocketServer({ server });
+wss.on('connection', (ws) => {
   RequestHandler.handle(Server, ws, {"request": "newClient"});
 
   ws.on('message', function incoming(message) {
@@ -21,3 +30,4 @@ wss.on('connection', function connection(ws) {
     RequestHandler.handle(Server, ws, {"request": "disconnect"});
   });
 });
+
