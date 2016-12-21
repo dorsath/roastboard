@@ -2,7 +2,7 @@ var uuid = require('node-uuid');
 var Room = require('./room.js');
 
 function Client(connection) {
-  this.uuid = String(uuid.v4()); 
+  this.uuid = String(uuid.v4());
   this.connection = connection;
 }
 
