@@ -16,7 +16,6 @@ Room.prototype = {
     return JSON.stringify({"command": "play", "sound": sound});
   },
   addClient: function(client){
-    console.log("adding client: ", client);
     this.clients.push(client);
     client.currentRoom = this;
   },
@@ -24,7 +23,6 @@ Room.prototype = {
     this.clients = this.clients.filter(function(c) { return c == client });
     client.currentRoom = undefined;
   }
-
 
 };
 

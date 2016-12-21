@@ -9,15 +9,15 @@ var RequestHandler = {
         server.newRoom(client);
         break;
       case "joinRoom":
-        if (message.roomId)
+        if (message.roomId != undefined)
           server.joinRoom(client, message.roomId);
         break;
       case "play":
-        if (message.sound)
+        if (message.currentRoom != undefined && message.sound != undefined)
           client.currentRoom.play(message.sound, client);
         break;
       case "disconnect":
-        if (client.currentRoom)
+        if (client.currentRoom != undefined)
           client.currentRoom.removeClient(client);
         break;
     }

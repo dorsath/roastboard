@@ -1,7 +1,18 @@
 let sounds = require("./src/sounds.js");
-var uuid = require('node-uuid');
+let socket = new WebSocket("ws://localhost:5000");
+let serverConnected = new Promise(function(resolve){
+  socket.onopen = function(event){
+    console.log("connected");
+  }
+});
+
+
 
 let play = function(file){
+  socket.send(JSON.stringify({"request": "play", "sound": file}));
+}
+
+let playSound = function(file){
   let a = new Audio('sounds/' + file);
   a.currentTime = 0;
   a.playbackRate = 1;
@@ -28,5 +39,3 @@ for (var key in sounds){
   container.appendChild(newButton(key, sounds[key]));
 }
 
-console.log(window.location.href);
-console.log(uuid.v4());
