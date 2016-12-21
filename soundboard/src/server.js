@@ -15,9 +15,7 @@ let Server = {
     console.log(request,data);
     switch(request){
       case "roomId":
-        this.roomId = data.roomId;
-        window.history.pushState('room', 'Join room', '/#' + this.roomId);
-        this.roomIdField.value = this.roomId;
+        this.setRoom(data.roomId);
         break;
       case "play":
         this.playSound(data.sound);
@@ -39,7 +37,6 @@ let Server = {
       this.roomId = uuidFromUrl;
       this.roomIdField.value = uuidFromUrl;
       this.joinRoom();
-      //this.roomId = uuidFromUrl;
     }
   },
   onmessage: function(event){
@@ -65,10 +62,19 @@ let Server = {
       this.socket.send(JSON.stringify(message));
     }
   },
+  setRoom: function(roomId){
+    this.roomIdField.value = roomId;
+    this.roomId = roomId;
+    window.history.pushState('room', 'Join room', '/#' + roomId);
+  },
   joinRoom: function(){
     if (this.connected){
-      let message = {"request": "joinRoom", "roomId": this.roomIdField.value};
-      this.socket.send(JSON.stringify(message));
+      if (this.roomIdField.value != "") {
+        let message = {"request": "joinRoom", "roomId": this.roomIdField.value};
+        this.socket.send(JSON.stringify(message));
+        this.setRoom(this.roomIdField.value);
+      } else
+        this.newRoom();
     }
   },
   play: function(file){
