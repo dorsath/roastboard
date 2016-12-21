@@ -19,8 +19,8 @@ The bot allows you to play sound fragments from Purge's coaching videos in your 
 
 # Supported Commands
 
-| Command       | Description           |
-| :------------ |:----------------------|
+| Command           | Description           |
+| :---------------- |:----------------------|
 | !purge        | Plays a random Purge roast from all the following roasts. |
 | !purge sunder | You actually just sunder killed yourself. I am actually really impressed. I am pretty blown away actually. |
 | !purge officially_huge_mistake | You have officially made a huge mistake, okay.. |
