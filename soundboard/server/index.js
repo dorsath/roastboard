@@ -22,8 +22,6 @@ wss.on('connection', (ws) => {
   RequestHandler.handle(Server, ws, {"request": "newClient"});
 
   ws.on('message', function incoming(message) {
-    
-    //console.log("message:", message);
     var json = JSON.parse(message);
     RequestHandler.handle(Server, ws, json);
   });

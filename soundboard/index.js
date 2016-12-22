@@ -22,11 +22,6 @@ Server.playSound = function(file){
   a.play();
 }
 
-
-
-
-
-
 let newButton = function(file, sound){
   let btnContainer = document.createElement("div");
   btnContainer.className = "soundRow";
