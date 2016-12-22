@@ -3,7 +3,6 @@ var uuid = require('node-uuid');
 
 var RequestHandler = {
   handle: function(server, connection, message){
-    console.log(message);
     if (!message.request)
       return;
 
@@ -14,8 +13,6 @@ var RequestHandler = {
         break;
       }
     };
-    if (client)
-      console.log("client", client.uuid);
 
     switch(message.request){
       case "newClient":
