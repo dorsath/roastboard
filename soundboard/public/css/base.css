@@ -22,6 +22,7 @@ h1 {
   position: relative;
   transition: border-left 0.05s linear;
   border-left: 20px solid #ddd;
+  margin: 5px 0px;
 }
 
 .soundRow:hover {
@@ -34,7 +35,11 @@ h1 {
 
 .soundButton {
   padding: 5px 100px 5px 5px;
-  margin: 5px;
+  transition: background-color 0.05s linear;
+}
+
+.soundButton.clicked {
+  background-color: #DC381F;
 }
 
 

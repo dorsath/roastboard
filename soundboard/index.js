@@ -46,7 +46,6 @@ Server.playSound = function(file){
 }
 
 let soundFinished = function(file){
-  console.log("Sound finished: ", file);
 
   let element = container.querySelector("[data-filename='" + file + "']");
   if (element){
@@ -64,6 +63,11 @@ let newButton = function(file, sound){
   btn.className = "soundButton";
   btn.addEventListener("click", function(){
     play(file);
+    btn.className += " clicked";
+    setTimeout(function(){
+      btn.className = btn.className.replace(/ clicked/g, "");
+    }, 200);
+
   });
   btnContainer.appendChild(btn);
 

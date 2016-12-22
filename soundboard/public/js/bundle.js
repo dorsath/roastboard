@@ -52,7 +52,6 @@ Server.playSound = function(file){
 }
 
 let soundFinished = function(file){
-  console.log("Sound finished: ", file);
 
   let element = container.querySelector("[data-filename='" + file + "']");
   if (element){
@@ -70,6 +69,11 @@ let newButton = function(file, sound){
   btn.className = "soundButton";
   btn.addEventListener("click", function(){
     play(file);
+    btn.className += " clicked";
+    setTimeout(function(){
+      btn.className = btn.className.replace(/ clicked/g, "");
+    }, 200);
+
   });
   btnContainer.appendChild(btn);
 
@@ -21576,7 +21580,7 @@ module.exports = {
     "source": "https://www.youtube.com/watch?v=GQVVFQjBmiQ&feature=youtu.be&t=269"
   },
   "im_gonna_screw_you.mp3": {
-    "text": "I'm gonna screw you: you had a really shit early game!",
+    "text": "I'm gonna skewer you: you had a really shit early game!",
     "source": "https://www.youtube.com/watch?v=GQVVFQjBmiQ&feature=youtu.be&t=1916"
   },
   "coffin_tirade.mp3": {

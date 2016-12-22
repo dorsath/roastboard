@@ -85,7 +85,7 @@ module.exports = {
     "source": "https://www.youtube.com/watch?v=GQVVFQjBmiQ&feature=youtu.be&t=269"
   },
   "im_gonna_screw_you.mp3": {
-    "text": "I'm gonna screw you: you had a really shit early game!",
+    "text": "I'm gonna skewer you: you had a really shit early game!",
     "source": "https://www.youtube.com/watch?v=GQVVFQjBmiQ&feature=youtu.be&t=1916"
   },
   "coffin_tirade.mp3": {
