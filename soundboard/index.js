@@ -27,15 +27,25 @@ Server.playSound = function(file){
 
 
 
-let newButton = function(file, text){
+let newButton = function(file, sound){
+  let btnContainer = document.createElement("div");
+  btnContainer.className = "soundRow";
   let btn = document.createElement("div");
-  btn.appendChild(document.createTextNode(text));
+  btn.appendChild(document.createTextNode(sound.text));
   btn.className = "soundButton";
   btn.addEventListener("click", function(){
     play(file);
   });
+  btnContainer.appendChild(btn);
 
-  return btn;
+  let sourceLink = document.createElement("a");
+  sourceLink.appendChild(document.createTextNode("youtube"));
+  sourceLink.href = sound.source;
+  sourceLink.target = "_blank";
+  sourceLink.className = "soundSource";
+  btnContainer.appendChild(sourceLink);
+
+  return btnContainer;
 }
 
 let container = document.getElementById("soundbuttons");

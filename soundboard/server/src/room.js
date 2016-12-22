@@ -1,4 +1,5 @@
 var uuid = require('node-uuid');
+var Sounds = require('../../src/sounds.js');
 
 function Room(client, roomId){
   this.clients = [];
@@ -9,6 +10,8 @@ function Room(client, roomId){
 Room.prototype = {
   play: function(sound, sourceClient){
     console.log("playing ", sound, "in room", this.uuid);
+    if (Sounds[sound] == undefined)
+      return;
     this.clients.forEach(function(client){
       if (client.uuid != sourceClient.uuid)
         client.send(this.playSoundCommand(sound));
