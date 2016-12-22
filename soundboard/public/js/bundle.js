@@ -11,6 +11,7 @@ Server.setup();
 
 document.getElementById("joinRoomButton").addEventListener("click", Server.joinRoom.bind(Server));
 Server.roomIdField = document.getElementById("roomIdField");
+Server.roomCounter = document.getElementById("roomOccupants");
 
 window.addEventListener("hashchange", Server.updateFromHash.bind(Server));
 
@@ -21370,7 +21371,6 @@ let Server = {
     this.socket.onerror = this.onerror.bind(this);
   },
   handleCommand: function(request, data){
-    console.log(request,data);
     switch(request){
       case "roomId":
         this.setRoom(data.roomId);
@@ -21378,8 +21378,10 @@ let Server = {
       case "play":
         this.playSound(data.sound);
         break;
+      case "roomOccupants":
+        this.roomCounter.innerHTML = data.roomOccupants;
+        break;
     }
-
   },
   tryToReconnect: function(){
     setTimeout(this.setup.bind(this), 3000);
@@ -21440,8 +21442,16 @@ let Server = {
       let message = {"request": "play", "sound": file};
       this.socket.send(JSON.stringify(message));
     }
+  },
+  getRoomOccupants: function(){
+    if (this.connected && this.roomId){
+      let message = {"request": "roomOccupants"};
+      this.socket.send(JSON.stringify(message));
+    }
   }
 }
+
+setInterval(Server.getRoomOccupants.bind(Server), 2000);
 
 
 

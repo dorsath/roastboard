@@ -5,6 +5,7 @@ Server.setup();
 
 document.getElementById("joinRoomButton").addEventListener("click", Server.joinRoom.bind(Server));
 Server.roomIdField = document.getElementById("roomIdField");
+Server.roomCounter = document.getElementById("roomOccupants");
 
 window.addEventListener("hashchange", Server.updateFromHash.bind(Server));
 

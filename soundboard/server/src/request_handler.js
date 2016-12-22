@@ -32,6 +32,11 @@ var RequestHandler = {
           Server.joinRoom(client, message.roomId);
         }
         break;
+      case "roomOccupants":
+        if (client && client.currentRoom){
+          connection.send(JSON.stringify({"command": "roomOccupants", "roomOccupants": client.currentRoom.clients.length})); 
+        }
+        break;
       case "play":
         if (client && client.currentRoom && message.sound)
           client.currentRoom.play(message.sound, client);
