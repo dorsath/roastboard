@@ -18,13 +18,18 @@ h1 {
 }
 
 .soundRow {
+  background-color: #eee;
   position: relative;
-  background-color:#eee;
+  transition: border-left 0.05s linear;
+  border-left: 20px solid #ddd;
+}
+
+.soundRow:hover {
+  cursor: pointer;
 }
 
 .soundRow.active {
-  background-color:#DC381F;
-  color: white;
+  border-left: 20px solid #DC381F;
 }
 
 .soundButton {
@@ -32,10 +37,6 @@ h1 {
   margin: 5px;
 }
 
-.soundButton:hover {
-  color: red;
-  cursor: pointer;
-}
 
 .soundSource {
   position: absolute;

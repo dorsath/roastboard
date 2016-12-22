@@ -9,6 +9,8 @@ Server.roomCounter = document.getElementById("roomOccupants");
 
 window.addEventListener("hashchange", Server.updateFromHash.bind(Server));
 
+let container = document.getElementById("soundbuttons");
+
 
 let play = function(file){
   if (Server.connected && Server.roomId)
@@ -16,16 +18,47 @@ let play = function(file){
   Server.playSound(file);
 }
 
+let timeouts = {};
+
 Server.playSound = function(file){
   let a = new Audio('sounds/' + file);
-  a.currentTime = 0;
-  a.playbackRate = 1;
-  a.play();
+  a.addEventListener('loadedmetadata', function() {
+    a.currentTime = 0;
+    a.playbackRate = 1;
+    a.play(); 
+
+    if (timeouts[file]) {
+      clearTimeout(timeouts[file]);
+    } else {
+      let element = container.querySelector("[data-filename='" + file + "']");
+      if (element){
+        element.className += " active";
+      }
+    }
+
+    timeouts[file] = setTimeout(function(){
+      soundFinished(file);
+    }, a.duration * 1000);
+
+  });
+  
+
+}
+
+let soundFinished = function(file){
+  console.log("Sound finished: ", file);
+
+  let element = container.querySelector("[data-filename='" + file + "']");
+  if (element){
+    element.className = element.className.replace(/ active/g,"");
+  }
+  delete timeouts[file];
 }
 
 let newButton = function(file, sound){
   let btnContainer = document.createElement("div");
   btnContainer.className = "soundRow";
+  btnContainer.dataset.filename = file;
   let btn = document.createElement("div");
   btn.appendChild(document.createTextNode(sound.text));
   btn.className = "soundButton";
@@ -43,8 +76,6 @@ let newButton = function(file, sound){
 
   return btnContainer;
 }
-
-let container = document.getElementById("soundbuttons");
 
 
 for (var key in sounds){
