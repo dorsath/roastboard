@@ -38,7 +38,10 @@ Server.playSound = function(file){
     } else {
       let element = container.querySelector("[data-filename='" + file + "']");
       if (element){
-        element.className += " active";
+        element.className += " active bump";
+        setTimeout(function(){
+          element.className = element.className.replace(/ bump/g, "");
+        }, 200);
       }
     }
 
@@ -69,11 +72,6 @@ let newButton = function(file, sound){
   btn.className = "soundButton";
   btn.addEventListener("click", function(){
     play(file);
-    btn.className += " clicked";
-    setTimeout(function(){
-      btn.className = btn.className.replace(/ clicked/g, "");
-    }, 200);
-
   });
   btnContainer.appendChild(btn);
 
