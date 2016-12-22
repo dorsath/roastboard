@@ -61,7 +61,7 @@ module.exports = {
     "source": "https://www.youtube.com/watch?v=DiZzrBWhG4o&feature=youtu.be&t=2720"
   },
   "attacking_the_wrong_guy.mp3": {
-    "text": "And then you start attacking the wrong guy as well. You super messed up. (gniffelend in minachting)",
+    "text": "And then you start attacking the wrong guy as well. You super messed up.",
     "source": "https://www.youtube.com/watch?v=DiZzrBWhG4o&feature=youtu.be&t=2742"
   },
   "right_click.mp3": {
