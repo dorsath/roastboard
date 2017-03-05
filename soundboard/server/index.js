@@ -12,6 +12,8 @@ var Room = require('./src/room.js');
 var RequestHandler = require('./src/request_handler.js');
 var Server = require('./src/server.js');
 
+global.appRoot = path.resolve(__dirname);
+
 const server = express()
   .use(express.static('public'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
